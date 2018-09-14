@@ -170,7 +170,7 @@
   <article class="post">
     <h1 class="post-title">
       
-        <a href="/2018/09/13/hello-world/">
+        <a href="/2018/09/14/hello-world/">
           Hello World
         </a>
       
@@ -178,7 +178,7 @@
     <div class="post-pub">
       <div class="post-date">
         <i class="iconfont">&#xe64d;</i>
-        <span>2018-09-13</span>
+        <span>2018-09-14</span>
       </div>
       <div class="post-cat">
         
@@ -189,24 +189,19 @@
       
         
         
+          
+        
       
 
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
       
     </div>
 
     
-      <a href="/2018/09/13/hello-world/" class="read-more">Read more..</a>
+      <a href="/2018/09/14/hello-world/" class="read-more">Read more..</a>
     
 
   </article>
@@ -236,6 +231,8 @@
       
         
         
+          
+        
       
 
       
@@ -243,36 +240,6 @@
 <p>最开始，查了很多关于 React 的资料，了解了Virtual DOM 和DOM，然而并未能真正解答为什么 React 不推荐操作DOM？</p>
 <p>最近偶然看到这样一句话，<strong>DOM 操作会引起浏览器对网页进行重新布局，重新绘制。</strong></p>
 <p>那么，浏览器的渲染机制又是什么呢？</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/3100944-8d17fb8ed1f5242d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>如上图，浏览器的渲染机制可以归纳为四个步骤：</p>
-<ul>
-<li><strong>解析HTML以构建DOM树</strong>：渲染引擎开始解析HTML文档，转换树种的HTML标签或js生成的标签到DOM节点，它被称为——内容树。</li>
-<li><strong>构建渲染树</strong>：解析CSS（包括外部CSS文件和样式元素以及js生成的样式），根据CSS选择器计算出节点的样式，创建另一个树——渲染树。</li>
-<li><strong>布局渲染树</strong>：从根节点递归调用，计算每一个元素的大小、位置等，给每个节点所应该出现在屏幕上的精确坐标。</li>
-<li><strong>绘制渲染树</strong>：遍历渲染树，每个节点将使用UI后端层来绘制。</li>
-</ul>
-<p>从图中可以看出 Repaint 和 Reflow 分别出现在了第三步和第四步。而在我们操作DOM的时候，就有可能引起页面结构或者页面展示的变化；<strong>页面结构的变化会触发 Reflow，页面展示的变化会触发 Repaint</strong>。</p>
-<p>关于Reflow和Repaint，简单讲，你在操作DOM前截一次屏，操作之后再截一次屏，如果你两次截屏每个坐标上的东西一样，那么久不需要 Reflow；Repaint 发生更改时，元素的外观被改变，且在没有改变布局的情况下发生，如改变 outline，visibility，background color，不会影响DOM结构。</p>
-<p>什么会引起Repaint？</p>
-<ul>
-<li>Change Visibility : hidden to visible</li>
-<li>Change background , border-color , color</li>
-<li>Elements skin changes visibility , but do not affect it’s layout</li>
-</ul>
-<p>什么会引起Reflow？</p>
-<ul>
-<li>Resizing the window</li>
-<li>Changing the font</li>
-<li>Adding or removing a stylesheet</li>
-<li>Content changes, such as a user typing text in an input box</li>
-<li>Activation of CSS pseudo classes such as :hover (in IE the activation of the pseudo class of a sibling)</li>
-<li>Manipulating the class attribute</li>
-<li>A script manipulating the DOM</li>
-<li>Calculating offsetWidth and offsetHeight</li>
-<li>Setting a property of the style attribute</li>
-</ul>
-<p><strong>Reflow 都会引起 Repaint。</strong></p>
-
       
     </div>
 
